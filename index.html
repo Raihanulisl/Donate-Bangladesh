@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donate Bangladesh</title>
+
+    <!-- Daily ui $ Tailwind css cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- google link font family Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Css Config file -->
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navBcolor: "#F9F7F3",
+              hColor: "rgb(17, 17, 17)",
+              pColor: "rgba(17, 17, 17, 0.7)",
+              btnColor: "#B4F461",
+              bodyBg: "rgb(255, 255, 255)",
+              border: "rgba(17, 17, 17, 0.1)",
+            },
+            fontFamily: {
+              lexend: [" Lexend", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      #blur {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+      }
+      #blur::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        backdrop-filter: blur(5px);
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        z-index: -1;
+      }
+      #blur.blurred::before {
+        opacity: 1;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 10%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-popup {
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 15px;
+        width: 350px;
+        height: 250px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .modal-popup img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .close {
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+      }
+
+      .modal-content {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-lexend bg-bodyBg">
+    <header class="sticky top-0">
+      <nav
+        id="#blur"
+        class="bg-navBcolor bg-opacity-95 flex justify-between items-center py-6 px-4 lg:justify-around"
+      >
+        <h2
+          class="text-hColor text-[12px] font-semibold bg-btnColor px-[14px] py-2 rounded-lg lg:text-xl lg:px-5"
+        >
+          <button id="blog">Blog</button>
+        </h2>
+        <div class="flex items-center space-x-2 lg:space-x-4">
+          <img
+            class="w-[36px] h-[36px] lg:w-[48px] lg:h-[48px]"
+            src="./assets/logo.png"
+            alt="logo_image"
+          />
+          <h2 class="text-hColor font-semibold lg:text-xl">
+            Donate Bangladesh
+          </h2>
+        </div>
+        <div class="flex items-center space-x-1">
+          <img
+            class="w-[20px] lg:w-[24px]"
+            src="./assets/coin.png"
+            alt="Money-pic"
+          />
+          <p class="text-pColor font-medium lg:text-xl">
+            <span id="accountBalance">19224</span> BDT
+          </p>
+        </div>
+      </nav>
+
+      <div
+        id="blur"
+        class="flex justify-evenly py-5 lg:justify-center lg:space-x-4"
+      >
+        <button
+          id="donationBtn"
+          class="px-[20px] py-[10px] border border-border text-pColor bg-btnColor rounded-xl"
+        >
+          Donation
+        </button>
+        <button
+          id="historyBtn"
+          class="px-[20px] py-[10px] border border-border text-pColor rounded-xl"
+        >
+          History
+        </button>
+      </div>
+    </header>
+    <main id="main" class="mt-4 lg:mt-12 lg:space-y-8 mb-20">
+      <!-- Card 1 -->
+      <section
+        class="p-4 m-2 space-y-4 border border-border rounded-md lg:flex lg:mx-24 lg:space-x-4"
+      >
+        <div class="">
+          <img class="h-full" src="./assets/noakhali.png" alt="noakhali" />
+        </div>
+        <div
+          class="space-y-3 sm:w-[60%] lg:flex lg:flex-col lg:justify-between"
+        >
+          <div
+            class="flex w-36 space-x-1 text-pColor font-medium bg-[#ebebed] px-2 py-3 rounded-md"
+          >
+            <img class="w-5" src="./assets/coin.png" alt="" />
+            <p class=""><span id="addedDonateMoney">38000</span> BDT</p>
+          </div>
+          <h2 id="title" class="text-hColor font-semibold text-xl">
+            Donate for Flood at Noakhali, Bangladesh
+          </h2>
+          <p class="text-pColor font-medium lg:text-start">
+            The recent floods in Noakhali have caused significant damage to
+            homes infrastructure. Your donation will help provide essential
+            supplies and to those affected by this disaster. Every contribution,
+            big or small, makes difference. Please join us in supporting the
+            relief efforts and making a positive impact on the lives of those in
+            need.
+          </p>
+          <div class="flex flex-col space-y-3">
+            <input
+              id="addMoney"
+              class="bg-[#f9f9f9] text-[#111111] opacity-50 p-3 border border-border rounded-lg"
+              type="text"
+              placeholder="Write Donation Amount"
+            />
+            <button
+              id="addMoneyBtn"
+              class="bg-btnColor p-2 text-hColor rounded-lg"
+            >
+              Donation Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- card 2 -->
+
+      <section
+        class="p-4 m-2 space-y-4 border border-border rounded-md lg:flex lg:mx-24 lg:space-x-4"
+      >
+        <div>
+          <img class="h-full" src="./assets/feni.png" alt="noakhali" />
+        </div>
+        <div
+          class="space-y-3 lg:w-[60%] lg:space-y-1 lg:flex lg:flex-col lg:justify-between"
+        >
+          <div
+            class="flex w-36 space-x-1 text-pColor font-medium bg-[#ebebed] px-2 py-3 rounded-md"
+          >
+            <img class="w-5" src="./assets/coin.png" alt="" />
+            <p><span id="addedDonateMoney">24000</span> BDT</p>
+          </div>
+          <h2 id="title" class="text-hColor font-semibold text-xl">
+            Donate for Flood Relief in Feni,Bangladesh
+          </h2>
+          <p class="text-pColor font-medium lg:text-start">
+            The recent floods in Feni have devastated local communities, leading
+            to severe disruption and loss. Your generous donation will help
+            provide immediate aid, including food, clean water, and medical
+            supplies, to those affected by this calamity. Together, we can offer
+            crucial support and help rebuild lives in the aftermath of this
+            disaster. Every contribution counts towards making a real
+            difference. Please consider donating today to assist those in urgent
+            need.
+          </p>
+          <div class="flex flex-col space-y-3">
+            <input
+              id="addMoney"
+              class="bg-[#f9f9f9] text-[#111111] opacity-50 p-3 border border-border rounded-lg"
+              type="text"
+              placeholder="Write Donation Amount"
+            />
+            <button
+              id="addMoneyBtn"
+              class="bg-btnColor p-2 text-hColor rounded-lg"
+            >
+              Donation Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- card 3 -->
+
+      <section
+        class="p-4 m-2 space-y-4 border border-border rounded-md lg:flex lg:mx-24 lg:space-x-4"
+      >
+        <div class="">
+          <img class="h-full" src="./assets/quota-protest.png" alt="noakhali" />
+        </div>
+        <div
+          class="space-y-3 lg:w-[60%] lg:space-y-2 lg:flex lg:flex-col lg:justify-between"
+        >
+          <div
+            class="flex w-36 space-x-1 text-pColor font-medium bg-[#ebebed] px-2 py-3 rounded-md"
+          >
+            <img class="w-5" src="./assets/coin.png" alt="" />
+            <p><span id="addedDonateMoney">74000</span> BDT</p>
+          </div>
+          <h2 id="title" class="text-hColor font-semibold text-xl">
+            Aid for Injured in the Quota Movement, Bangladesh
+          </h2>
+          <p class="text-pColor font-medium lg:text-start">
+            The recent Quota movement has resulted in numerous injuries and
+            significant hardship for many individuals. Your support is crucial
+            in providing medical assistance, rehabilitation, and necessary
+            supplies to those affected. By contributing, you help ensure that
+            injured individuals receive the care and support they need during
+            this challenging time. Every donation plays a vital role in
+            alleviating their suffering and aiding in their recovery. Please
+            consider making a donation to support these brave individuals in
+            their time of need.
+          </p>
+          <div class="flex flex-col space-y-3">
+            <input
+              id="addMoney"
+              class="bg-[#f9f9f9] text-[#111111] opacity-50 p-3 border border-border rounded-lg"
+              type="text"
+              placeholder="Write Donation Amount"
+            />
+            <button
+              id="addMoneyBtn"
+              class="bg-btnColor p-2 text-hColor rounded-lg"
+            >
+              Donation Now
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- history section -->
+
+    <div id="historySection" class="mt-20 h-[100vh] hidden">
+      <div id="historyContainer" class="lg:px-24 h-[100vh] mt-20"></div>
+    </div>
+
+    <!-- impotant FAQ -->
+
+    <div id="question" class="bg-white h-[100vh] hidden">
+      <h1 class="text-hColor font-bold m-4 lg:mx-24 text-2xl lg:text-3xl mb-5">
+        Important FAQ
+      </h1>
+      <div
+        id="inputContainer"
+        class="px-4 py-7 m-4 lg:mx-24 border border-border rounded-xl"
+      >
+        <h1 id="inputTitle" class="text-hColor font-medium text-xl">
+          What is the Document Object Model (DOM)
+        </h1>
+        <input
+          class="bg-white w-[60%] h-6 mt-2 hidden"
+          type="text"
+          id="questionInput"
+          placeholder="Write Your Answer Here"
+        />
+        <button id="add" class="text-hColor hidden">Add</button>
+      </div>
+      <div
+        id="inputContainer"
+        class="p-4 m-4 lg:mx-24 border border-border rounded-xl"
+      >
+        <h1 id="inputTitle" class="text-hColor font-medium text-xl">
+          How do you select An element from the DOM
+        </h1>
+        <input
+          class="bg-white w-[60%] h-6 mt-2 hidden"
+          type="text"
+          id="questionInput"
+          placeholder="Write Your Answer Here"
+        />
+        <button id="add" class="text-hColor hidden">Add</button>
+      </div>
+      <div
+        id="inputContainer"
+        class="p-4 m-4 lg:mx-24 border border-border rounded-xl"
+      >
+        <h1 id="inputTitle" class="text-hColor font-medium text-xl">
+          What is event Delegation in the context of the DOM, and why is it
+          usefull
+        </h1>
+        <input
+          class="bg-white w-[60%] h-6 mt-2 hidden"
+          type="text"
+          id="questionInput"
+          placeholder="Write Your Answer Here"
+        />
+        <button id="add" class="text-hColor hidden">Add</button>
+      </div>
+      <div
+        id="inputContainer"
+        class="p-4 m-4 lg:mx-24 border border-border rounded-xl"
+      >
+        <h1 id="inputTitle" class="text-hColor font-medium text-xl">
+          How do you Manipulate an element's attributes and styles using the DOM
+        </h1>
+        <input
+          class="bg-white w-[60%] h-6 mt-2 hidden"
+          type="text"
+          id="questionInput"
+          placeholder="Write Your Answer Here"
+        />
+        <button id="add" class="text-hColor hidden">Add</button>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="modelContainer" class="popup">
+      <!-- Modal content -->
+      <div class="modal-popup">
+        <h2 class="text-hColor font-semibold text-2xl lg:text-3xl">
+          Congrates
+        </h2>
+        <img src="./assets/coin.png" alt="" />
+        <p>You Have Donated For Humankind</p>
+        <p>Successfully</p>
+        <span class="close">Close Confermation</span>
+      </div>
+    </div>
+
+    <footer class="h-1"></footer>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
